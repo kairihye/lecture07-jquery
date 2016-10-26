@@ -10,65 +10,60 @@
 /* First we'll use jQuery to create some DOM elements that make a nice form */
 
 //Use the jQuery selector function $() to select the '#poll-options' element
-var options = $('#poll-options');
+
 
 //Use console.log to log out that variable (to show that everything works)
-console.log(options);
+
 
 //Use the jQuery selector function $() to create a new <input> element
 //Remember to include the < > when specifying the new element to make!
-var input = $('<input>');
+
 
 //Use .append() to append your input element to the pollOptions element
-options.append(input);
+
 
 //Use .addClass() to add the 'form-control' class to your input
-input.addClass('form-control');
+
 
 //Use .attr() to set the following attributes of the input:
 //  'type' :        'text'
 //  'placeholder' : 'Your option here' 
 //Try to do this with only a single function call!
-input.attr({
-  'type':'text',
-  'placeholder':'Your option here',
-  'id': 'option1', //extra id
-});
+
 
 //Create a new <label> element with the HTML:
 //  '<label class="input-group-addon"></label>'
 //You can just use the $() function to specify the entire html String
-var label = $('<label for="option1" class="input-group-addon"></label>');
+
 
 //Use .text() to specify the text of the label: "1."
-label.text('1.');
+
 
 //Attach the label BEFORE the input
 //Hint: see http://api.jquery.com/category/manipulation/dom-insertion-outside/
-input.before(label);
+
 
 //Surround ("wrap") both the <input> and the <label> with the element
 //  '<div class="input-group">'
 //Use the group selector (the comma ,) to select both elements with jQuery
 //Hint: http://api.jquery.com/category/manipulation/dom-insertion-around/
-$('input, label').wrapAll('<div class="input-group">');
+
 
 
 /* Now we'll make it so you can add new inputs! */
 
 //Select the '#addButton' and register an event listener that responds to clicks
-$('#addButton').click(function(event){
+
 
   //The following steps should occur when the button is clicked:
 
   //Select the '.input-group' element you made
-  var group = $('.input-group:first'); //will need to only select first element! I like this better...
+
 
   //clone the element and append the copy to options
   //Use the .clone() method to dupliate that input-group element.
   //Then attach the duplicate to the '#poll-options' element
-  var copy = group.clone();
-  options.append(copy);
+
 
   //Note: If you find the number of options increasing exponentially 
   //on every click, make sure you only select the first '.input-group'
@@ -76,23 +71,21 @@ $('#addButton').click(function(event){
 
   //Select all the 'input' elements on the screen, and get the .length
   //of the array. Log out that number, which is the number of options
-  var numberOptions = $('input').length; 
-  console.log(numberOptions);
+
 
   //Select the 'label' element in the duplicate. Hint: use .children()
-  var newLabel = copy.children('label');
+
 
   //Set the text of this new label to be the number of options
-  newLabel.text(numberOptions+'.');
+
 
   //Any values the user has typed in will be copied along with the 'input-group'
   //Select the duplicate's 'input' element and set it's value to be empty ''
   //Hint: use .val()
-  copy.children('input').val('');
+
 
   //Extra: update `for` and `id` attributes
-  newLabel.attr('for','option'+numberOptions);
-  copy.children('input').attr('id','option'+numberOptions);
+
 
 
   /* Finally, we'll add a "remove" button to these new inputs (we can't remove
@@ -105,41 +98,33 @@ $('#addButton').click(function(event){
   //     </button>
   //   </span>`
   //Note that you can use the backticks `` to make a multi-line String
-  copy.append(
-  `<span class="input-group-btn">
-    <button type="button" class="btn btn-danger">
-      <span class="glyphicon glyphicon-remove" aria-label="Remove"></span>
-    </button>
-  </span>`);
+
 
   //Select that button you just created. Because the button is inside a <span>
   //you can't use .children(); try .find() instead
-  var removeButton = copy.find('button:last-child');
+
 
   //Add a click event listener to that remove button
-  removeButton.click(function(event){
+
 
     //The following steps should occur when the remove button is clicked:
 
     //Use jQuery to select the target of the event (event.target)
-    var whichButton = $(event.target);
+
 
     //Select the target button's parent 'input-group' and remove it
     //See https://api.jquery.com/parents/ and https://api.jquery.com/remove/ 
-    whichButton.parents('.input-group').remove();
+
 
     //Now that you've removed items, you'll need to re-number ALL the labels
     //Select all the 'label' elements and use the .text() function
     //Hint: Look at how this function can take a callback as a parameter
     //      http://api.jquery.com/text/#text-function
-    var labels = $('label');
-    labels.text(function(index){
-      return (index+1)+'.';
-    });    
 
-  }); //end removeButton.click
 
-}); //end addButton.click
+
+
+
 
 
 
@@ -156,9 +141,8 @@ Add the following html BEFORE the label to create a "move down" button
   </span>`
 
 Add an event listener to this new button so that when clicked it:
-  1. Selects the clicked input-group and the one below it (separtely)
-  2. Swaps the location of those elements
+  1. Selects the <input> of the clicked input-group, as well as the 
+     <input> below it (separtely)
+  2. Swaps the location of those two elements elements
 
-To make this really work, you'll also need to re-number the elements, 
-and move the red "X" button if you moved the first input.
 */

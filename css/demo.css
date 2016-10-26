@@ -11,3 +11,7 @@ circle {
 	transform: translate(190px, 225px); /* move the element */
 	transition: all 1s ease-in; /* animation! */
 }
+
+figure img {
+	position: relative;
+}
