@@ -1,0 +1,13 @@
+svg {
+	max-width:500px;
+  background-color: white;
+}
+
+circle {
+	fill: red;
+}
+
+.down-slide {
+	transform: translate(190px, 225px); /* move the element */
+	transition: all 1s ease-in; /* animation! */
+}
