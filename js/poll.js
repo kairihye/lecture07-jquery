@@ -10,37 +10,45 @@
 /* First we'll use jQuery to create some DOM elements that make a nice form */
 
 //Use the jQuery selector function $() to select the '#poll-options' element
-
+var options = $('#poll-options');
 
 //Use console.log to log out that variable (to show that everything works)
-
+console.log(options);
 
 //Use the jQuery selector function $() to create a new <input> element
 //Remember to include the < > when specifying the new element to make!
-
+var input = $('<input>');
 
 //Use .append() to append your input element to the pollOptions element
-
+options.append(input);
 
 //Use .addClass() to add the 'form-control' class to your input
-
+input.addClass('form-control');
 
 //Use .attr() to set the following attributes of the input:
 //  'type' :        'text'
 //  'placeholder' : 'Your option here' 
 //Try to do this with only a single function call!
 
+input.attr({ //so put input becomes input.atrii(), now you have to do it in one function call so the curly braces goes inside the attribute() --> input.attr({ -put attributes in here})
+'type':'text',
+'placeholder': 'Your option here',
+
+})
 
 //Create a new <label> element with the HTML:
 //  '<label class="input-group-addon"></label>'
 //You can just use the $() function to specify the entire html String
 
+var label = $('<label for="option1" class="input-group-addon"></label>');
 
 //Use .text() to specify the text of the label: "1."
-
+label.text('1.');
 
 //Attach the label BEFORE the input
 //Hint: see http://api.jquery.com/category/manipulation/dom-insertion-outside/
+
+input.before(label);
 
 
 //Surround ("wrap") both the <input> and the <label> with the element
@@ -48,33 +56,39 @@
 //Use the group selector (the comma ,) to select both elements with jQuery
 //Hint: http://api.jquery.com/category/manipulation/dom-insertion-around/
 
-
+$('input, label').wrapAll('<div class="input-group">');
 
 /* Now we'll make it so you can add new inputs! */
 
 //Select the '#addButton' and register an event listener that responds to clicks
 
+$('#addbutton').click(function(event){
+
 
   //The following steps should occur when the button is clicked:
 
   //Select the '.input-group' element you made
-
+var group = $('.input-group:first');
 
   //clone the element and append the copy to options
   //Use the .clone() method to dupliate that input-group element.
   //Then attach the duplicate to the '#poll-options' element
-
+var copy = group.clone();
+options.append(copy);
 
   //Note: If you find the number of options increasing exponentially 
   //on every click, make sure you only select the first '.input-group'
   //Use the ':first' pseudoclass (see: http://api.jquery.com/first-selector/)
 
+
   //Select all the 'input' elements on the screen, and get the .length
   //of the array. Log out that number, which is the number of options
 
-
+ var numOfOptions = $('input').length;
+ console.log(numOfOptions);
   //Select the 'label' element in the duplicate. Hint: use .children()
 
+var newLabel = copy.children('label');
 
   //Set the text of this new label to be the number of options
 
